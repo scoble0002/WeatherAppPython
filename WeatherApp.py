@@ -6,8 +6,6 @@ import time
 
 def getWeather(canvas):
     city = textfield.get()
-    
-    ##added &units=imperialinto api might ne in wrong place units=imperial
     api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=11a24e577555163923af2fbf234d3f66"
     json_data = requests.get(api).json()
     condition = json_data['weather'][0]['main']
@@ -17,11 +15,11 @@ def getWeather(canvas):
     pressure = json_data['main']['pressure']
     humidity = json_data['main']['humidity']
     wind = json_data['wind']['speed']
-    sunrise = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunrise'] - 21600))
-    sunset = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunset'] - 21600)) 
+    ##sunrise = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunrise'] - 21600))
+    ##sunset = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunset'] - 21600)) + "Sunrise: " + sunrise +"\n" + "Sunset: " + sunset +"\n"
     
-    ultimate_info = condition + "\n" + str(temp) + "F"
-    ultimate_data = "\n" + "High Temp: " + str(hi_temp) + "\n" + "Low Temp: " + str(low_temp) +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) +"\n" + "Wind Speed: " + str(wind) +"\n" + "Sunrise: " + sunrise +"\n" + "Sunset: " + sunset +"\n"
+    ultimate_info = condition + "\n" + str(temp) + "°F"
+    ultimate_data = "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) +"\n" + "Wind Speed: " + str(wind) +"\n" 
     label1.config(text = ultimate_info)
     label2.config(text = ultimate_data)
 
@@ -29,8 +27,8 @@ canvas = tk.Tk()
 canvas.geometry("600x500")
 canvas.title("Weather App")
 
-f = ("poppins", 15, "bold")
-t = ("poppins", 35, "bold")
+f = ("times", 15, "bold")
+t = ("times", 35, "bold")
 
 textfield = tk.Entry(canvas, font = t)
 textfield.pack(pady = 20)
