@@ -1,22 +1,24 @@
 import tkinter as tk
-import requests
+from pip._vendor import requests
+##import pip._vendor.requests
+##import requests
 import time
 
 def getWeather(canvas):
     city = textfield.get()
     
-    ##added &units=imperialinto api might ne in wrong place
-    api = "api.openweathermap.org/data/2.5/weather?q=" + city +"units=imperial&APPID=11a24e577555163923af2fbf234d3f66"
+    ##added &units=imperialinto api might ne in wrong place units=imperial
+    api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=11a24e577555163923af2fbf234d3f66"
     json_data = requests.get(api).json()
     condition = json_data['weather'][0]['main']
-    temp = int(json_data['main']['temp'] - 273.15)
-    low_temp = int(json_data['main']['temp-min'] - 273.15)
-    hi_temp = int(json_data['main']['temp-max'] - 273.15)
+    temp = int(json_data['main']['temp'])
+    low_temp = int(json_data['main']['temp_min'])
+    hi_temp = int(json_data['main']['temp_max'])
     pressure = json_data['main']['pressure']
     humidity = json_data['main']['humidity']
     wind = json_data['wind']['speed']
     sunrise = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunrise'] - 21600))
-    sunset = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunset'] - 21600))
+    sunset = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunset'] - 21600)) 
     
     ultimate_info = condition + "\n" + str(temp) + "F"
     ultimate_data = "\n" + "High Temp: " + str(hi_temp) + "\n" + "Low Temp: " + str(low_temp) +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) +"\n" + "Wind Speed: " + str(wind) +"\n" + "Sunrise: " + sunrise +"\n" + "Sunset: " + sunset +"\n"
