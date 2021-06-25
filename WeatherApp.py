@@ -37,14 +37,14 @@ canvas.title("Weather App")
 canvas.config(bg="black")
 
 label = tk.Label(canvas, text="Enter City, State(if US), 2 Digit Country Code", bg="black", fg="white" ,font = ("times", 20, "bold"))
-label.pack(pady=(10, 0)) 
+label.pack(pady=(10, 10)) 
 
 f = ("times", 15, "bold")
 t = ("times", 35, "bold")
 
 
 textfield = tk.Entry(canvas, font = t)
-textfield.pack(pady = 20)
+textfield.pack()
 textfield.focus()
 textfield.bind('<Return>', getWeather)
 
