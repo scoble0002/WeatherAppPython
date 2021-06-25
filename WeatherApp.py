@@ -9,6 +9,7 @@ import time
 ##    ix = round(d / (360. / len(dirs)))
 ##    return dirs[ix % len(dirs)]
 
+
 def getWeather(canvas):
     city = textfield.get()
     api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=11a24e577555163923af2fbf234d3f66"
@@ -33,19 +34,24 @@ def getWeather(canvas):
 canvas = tk.Tk()
 canvas.geometry("600x500")
 canvas.title("Weather App")
+canvas.config(bg="black")
+
+label = tk.Label(canvas, text="Enter City, State(if US), 2 Digit Country Code", bg="black", fg="white" ,font = ("times", 20, "bold"))
+label.pack(pady=(10, 0)) 
 
 f = ("times", 15, "bold")
 t = ("times", 35, "bold")
+
 
 textfield = tk.Entry(canvas, font = t)
 textfield.pack(pady = 20)
 textfield.focus()
 textfield.bind('<Return>', getWeather)
 
-label1 = tk.Label(canvas, font = t)
+label1 = tk.Label(canvas, bg="black", fg="white", font = t)
 label1.pack() 
 
-label2 = tk.Label(canvas, font = f)
+label2 = tk.Label(canvas, bg="black", fg="white", font = f)
 label2.pack()
 
-canvas.mainloop()
+tk.mainloop()
