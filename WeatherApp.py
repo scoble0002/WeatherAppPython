@@ -4,6 +4,11 @@ from pip._vendor import requests
 ##import requests
 import time
 
+def degrees_to_cardinal(d):
+    dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+    ix = round(d / (360. / len(dirs)))
+    return dirs[ix % len(dirs)]
+
 def getWeather(canvas):
     city = textfield.get()
     api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=11a24e577555163923af2fbf234d3f66"
@@ -15,11 +20,12 @@ def getWeather(canvas):
     pressure = json_data['main']['pressure']
     humidity = json_data['main']['humidity']
     wind = json_data['wind']['speed']
+    wind_dir = json_data['wind']['deg']
     ##sunrise = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunrise'] - 21600))
     ##sunset = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunset'] - 21600)) + "Sunrise: " + sunrise +"\n" + "Sunset: " + sunset +"\n"
     
     ultimate_info = condition + "\n" + str(temp) + "°F"
-    ultimate_data = "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) +"\n" + "Wind Speed: " + str(wind) +"\n" 
+    ultimate_data = "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) + "%" +"\n" + "Wind Speed: " + str(wind) + "mph" +"\n" + "Wind Direction: " + str(wind_dir) +"\n" 
     label1.config(text = ultimate_info)
     label2.config(text = ultimate_data)
 
