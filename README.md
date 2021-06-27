@@ -9,6 +9,7 @@
 3. My App reads from a json file.
 4. I use an API. 
 5. GetWeather() function 
+6. Function degrees_to_cardinal() takes azimuth degrees from the json and converts it to compass direction.
 ## INSTRUCTIONS
 1. Download WeatherAppPython Repo.
 2. Run WeatherApp.py from terminal.

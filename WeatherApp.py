@@ -5,7 +5,7 @@ from pip._vendor import requests
 import time
 
 ##Function that changes Azimuth degrees to Compass direction
-def degrees_to_cardinal(d):
+def degrees_to_compass(d):
     dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
     ix = round(d / (360. / len(dirs)))
     return dirs[ix % len(dirs)]
@@ -29,7 +29,7 @@ def getWeather(canvas):
     
     ##Displays weather Info
     ultimate_info = condition + "\n" + str(temp) + "°F"
-    ultimate_data = "\n" + "Feels Like: " + str(real_feel) + "°F" + "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) + "%" +"\n" + "Wind Speed: " + str(wind) + " mph" +"\n" + "Wind Direction: " + degrees_to_cardinal(wind_dir) +"\n" 
+    ultimate_data = "\n" + "Feels Like: " + str(real_feel) + "°F" + "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) + "%" +"\n" + "Wind Speed: " + str(wind) + " mph" +"\n" + "Wind Direction: " + degrees_to_compass(wind_dir) +"\n" 
     label1.config(text = ultimate_info)
     label2.config(text = ultimate_data)
 
