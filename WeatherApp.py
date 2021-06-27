@@ -10,7 +10,7 @@ def degrees_to_compass(d):
     ix = round(d / (360. / len(dirs)))
     return dirs[ix % len(dirs)]
 
-##Function that calls and reads API
+##Function that calls API and reads json file
 def getWeather(canvas):
     city = textfield.get()
     api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=11a24e577555163923af2fbf234d3f66"
