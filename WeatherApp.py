@@ -5,7 +5,7 @@ from pip._vendor import requests
 import time
 
 ##Changes Azimuth degrees to Compass direction
-def degrees_to_compass(d):
+def getCompass(d):
     dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
     ix = round(d / (360. / len(dirs)))
     return dirs[ix % len(dirs)]
@@ -24,12 +24,11 @@ def getWeather(canvas):
     humidity = json_data['main']['humidity']
     wind = json_data['wind']['speed']
     wind_dir = json_data['wind']['deg']
-    ##sunrise = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunrise'] - 21600))
-    ##sunset = time.strftime('%I:%M:%S', time.gmtime(json_data['sys']['sunset'] - 21600)) + "Sunrise: " + sunrise +"\n" + "Sunset: " + sunset +"\n"
+
     
     ##Displays weather Info
     ultimate_info = condition + "\n" + str(temp) + "°F"
-    ultimate_data = "\n" + "Feels Like: " + str(real_feel) + "°F" + "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) + "%" +"\n" + "Wind Speed: " + str(wind) + " mph" +"\n" + "Wind Direction: " + degrees_to_compass(wind_dir) +"\n" 
+    ultimate_data = "\n" + "Feels Like: " + str(real_feel) + "°F" + "\n" + "High Temp: " + str(hi_temp) + "°F" + "\n" + "Low Temp: " + str(low_temp) + "°F" +"\n" + "Pressure: " + str(pressure) + "\n" + "Humidity: " + str(humidity) + "%" +"\n" + "Wind Speed: " + str(wind) + " mph" +"\n" + "Wind Direction: " + getCompass(wind_dir) +"\n" 
     label1.config(text = ultimate_info)
     label2.config(text = ultimate_data)
 
